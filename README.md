@@ -13,7 +13,7 @@ Customizable options include:
 
 ## Sample URL Usage: 
 
-https://api.missionmike.dev/video-placeholder-generator/thumbnails/7NOSDKb0HlU.jpg?**play_button_url=***https%3A%2F%2Fapi.missionmike.dev%2Fvideo-placeholder-generator%2Fassets%2Fyoutube_play.png*&**width=***600*&**play_button_width=***80*&**play_button_opacity=***80*&**save=***false*
+[/video-placeholder-generator/thumbnails/7NOSDKb0HlU.jpg?**play_button_url=***https%3A%2F%2Fapi.missionmike.dev%2Fvideo-placeholder-generator%2Fassets%2Fyoutube_play.png*&**width=***600*&**play_button_width=***80*&**play_button_opacity=***80*&**save=***false*](https://api.missionmike.dev/video-placeholder-generator/thumbnails/7NOSDKb0HlU.jpg?play_button_url=https%3A%2F%2Fapi.missionmike.dev%2Fvideo-placeholder-generator%2Fassets%2Fyoutube_play.png&width=600&play_button_width=80&play_button_opacity=80&save=false)
 
 **Here's what happens under the hood:**
 
