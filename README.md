@@ -18,9 +18,13 @@ https://api.missionmike.dev/video-placeholder-generator/thumbnails/H79gstz4qZI.j
 ### GET breakdown (URL Decoded):
 
 YouTube video (H79gstz4qZI.jpg): https://www.youtube.com/watch?v=H79gstz4qZI
+
 width: 600 (Pixels)
+
 play_button_url: https://api.missionmike.dev/video-placeholder-generator/assets/youtube_play.png
+
 play_button_width: 80 (Pixels)
+
 play_button_opacity: 80 (Percentage)
 
 **Here's what happens under the hood:**
