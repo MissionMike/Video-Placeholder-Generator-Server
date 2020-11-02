@@ -1,5 +1,9 @@
 <?php
 
+if (file_exists('analytics.php')) {
+	require_once('analytics.php');
+}
+
 $uri_arr = explode('/', $_SERVER['REQUEST_URI']); 	// Get array from URL parts
 $img = end($uri_arr);			// Get file from end of URL
 $img = explode('?', $img);		// Prepare to remove any query string
