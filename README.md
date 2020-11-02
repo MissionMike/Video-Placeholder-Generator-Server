@@ -3,17 +3,17 @@ Server-side utility to generate a video placeholder image, especially useful for
 
 Accepts various GET parameters, and generates a static image with the imagemagick PHP extension.
 
-**Note: It is recommended to set up your own copy of this [server-side installation](https://github.com/MissionMike/Video-Placeholder-Generator-Server) to host your own thumbnails. Perpetual hosting on the default api.missionmike.dev domain is NOT guaranteed!**
+**Note: It is recommended to set up your own copy of this server-side installation to host your own thumbnails. Perpetual hosting on the default api.missionmike.dev domain is NOT guaranteed!**
 
 Customizable options include:
-* Thumbnail Width
-* Play Button Image (from URL)
-* Play Button Width
-* Play Button Opacity
+* Thumbnail Width (width)
+* Play Button Image (from URL; play_button_url)
+* Play Button Width (play_button_width)
+* Play Button Opacity (play_button_opacity)
 
-Sample URL:
+## Sample URL Usage: 
 
-https://api.missionmike.dev/video-placeholder-generator/thumbnails/7NOSDKb0HlU.jpg?play_button_url=https%3A%2F%2Fapi.missionmike.dev%2Fvideo-placeholder-generator%2Fassets%2Fyoutube_play.png&width=600&play_button_width=80&play_button_opacity=80&save=false
+https://api.missionmike.dev/video-placeholder-generator/thumbnails/7NOSDKb0HlU.jpg?**play_button_url=***https%3A%2F%2Fapi.missionmike.dev%2Fvideo-placeholder-generator%2Fassets%2Fyoutube_play.png*&**width=***600*&**play_button_width=***80*&**play_button_opacity=***80*&**save=***false*
 
 **Here's what happens under the hood:**
 
