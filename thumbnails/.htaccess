@@ -1,1 +1,1 @@
-ErrorDocument 404 /video-thumbnail-generator/generator.php
+ErrorDocument 404 /video-placeholder-generator/generator.php

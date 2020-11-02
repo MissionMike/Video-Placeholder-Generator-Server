@@ -106,7 +106,7 @@ $thumbnail->resizeImage($options['width'], $options['height'], null, 1);
  */
 $play_button = new Imagick();
 $play_button->readImage(
-	'https://tools.missionmike.dev/thumbnail-generator/assets/youtube_play.png'
+	'./assets/youtube_play.png'
 );
 
 $play_button_original_width = $play_button->getImageWidth();
