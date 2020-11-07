@@ -1,19 +1,57 @@
 <?php
+/**
+ * Prevent direct access to this file; if the file isn't served
+ * as a result of a 404 error (as intended), let 'em know.
+ */
+if ($_SERVER['REDIRECT_STATUS'] !== '404') {
+	die("Direct access forbidden");
+}
 
+/**
+ * In a proper configuration, a request for "abcdefgh.jpg" would return a 404 error if the 
+ * image does not exist. That 404 error will route the server to this .php file.
+ * 
+ * ImageMagick's PHP extension "imagick" is required to proceed any further.
+ */
+if (!extension_loaded('imagick')) {
+	die('imagick PHP extension is not installed/loaded.');
+}
+
+/**
+ * Define a global to help prevent access to any included files
+ */
+define('VPG_LOADED', true);
+
+/**
+ * analytics.php could contain any kind of server-side tracking or other 3rd-party code.
+ * I like to incorporate sentry.io to help diagnose errors, but analytics.php can contain whatever
+ * you like... or, it could simply not exist.
+ * 
+ * If you want to prevent direct access to your analytics.php file, add a line:
+ * defined('VPG_LOADED') or die();
+ */
 if (file_exists('analytics.php')) {
 	require_once('analytics.php');
 }
 
-$uri_arr = explode('/', $_SERVER['REQUEST_URI']); 	// Get array from URL parts
-$img = end($uri_arr);			// Get file from end of URL
-$img = explode('?', $img);		// Prepare to remove any query string
-$img = $img[0];					// Keep only the filename, remove query string
-$img_arr = explode('.', $img);	// Get filename only, exclude extension
+/**
+ * If the 404 error was looking for "abcdefgh.jpg", then the following lines are meant
+ * to parse the URL and extract the filename only, without extension; ex: "abcdefgh"
+ */
+try {
+	$uri_arr = explode('/', $_SERVER['REQUEST_URI']); 	// Get array from URL parts
+	$img = end($uri_arr);			// Get file from end of URL
+	$img = explode('?', $img);		// Prepare to remove any query string
+	$img = $img[0];					// Keep only the filename, remove query string
+	$img_arr = explode('.', $img);	// Get filename only, exclude extension
+} catch (Exception $e) {
+	die('Unexpected error parsing the image file: ' . $e->getMessage());
+}
 
 try {
 	$video_id = $img_arr[0];
 } catch (Exception $e) {
-	die('Invalid or no video ID.');
+	die('Invalid or no video ID: ' . $e->getMessage());
 }
 
 $thumbnail = new Imagick(); // Prepare Imagick object
