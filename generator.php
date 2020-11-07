@@ -1,4 +1,11 @@
 <?php
+/**
+ * Prevent direct access to this file; if the file isn't served
+ * as a result of a 404 error (as intended), let 'em know.
+ */
+if ($_SERVER['REDIRECT_STATUS'] !== '404') {
+	die("Direct access forbidden");
+}
 
 /**
  * In a proper configuration, a request for "abcdefgh.jpg" would return a 404 error if the 
@@ -11,9 +18,17 @@ if (!extension_loaded('imagick')) {
 }
 
 /**
+ * Define a global to help prevent access to any included files
+ */
+define('VPG_LOADED', true);
+
+/**
  * analytics.php could contain any kind of server-side tracking or other 3rd-party code.
  * I like to incorporate sentry.io to help diagnose errors, but analytics.php can contain whatever
  * you like... or, it could simply not exist.
+ * 
+ * If you want to prevent direct access to your analytics.php file, add a line:
+ * defined('VPG_LOADED') or die();
  */
 if (file_exists('analytics.php')) {
 	require_once('analytics.php');
