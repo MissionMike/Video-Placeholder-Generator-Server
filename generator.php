@@ -95,7 +95,8 @@ if (is_numeric($video_id)) { // Vimeo IDs are all numbers...
  * Set default options here
  */
 $options = array(
-	'play_button_url' => './assets/youtube_play.png',
+	'play_button_url' => '',
+	'play_button_url_default' => './assets/youtube_play.png',
 	'play_button_opacity' => 1,
 	'play_button_width' => 80,
 	'width' => 640,
@@ -126,6 +127,8 @@ if ($options['play_button_width'] < 0) {
 
 if (isset($_GET['play_button_url'])) {
 	$options['play_button_url'] = (string) $_GET['play_button_url'];
+} else {
+	$options['play_button_url'] = $options['play_button_url_default'];
 }
 
 if (isset($_GET['width'])) {
@@ -160,9 +163,17 @@ $thumbnail->resizeImage($options['width'], $options['height'], null, 1);
  * Prepare the play button overlay image.
  */
 $play_button = new Imagick();
-$play_button->readImage(
-	$options['play_button_url'],
-);
+try {
+	$play_button->readImage(
+		$options['play_button_url'],
+	);
+} catch (Exception $e) {
+	try {
+		$play_button->readImage($options['play_button_url_default']);
+	} catch (Exception $e) {
+		error_log($e);
+	}
+}
 
 $play_button_original_width = $play_button->getImageWidth();
 $play_button_original_height = $play_button->getImageHeight();
