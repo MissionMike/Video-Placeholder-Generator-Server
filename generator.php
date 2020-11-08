@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Prevent direct access to this file; if the file isn't served
  * as a result of a 404 error (as intended), let 'em know.
@@ -94,7 +95,9 @@ if (is_numeric($video_id)) { // Vimeo IDs are all numbers...
  * Set default options here
  */
 $options = array(
+	'play_button_url' => './assets/youtube_play.png',
 	'play_button_opacity' => 1,
+	'play_button_width' => 80,
 	'width' => 640,
 	'save' => true,
 );
@@ -106,11 +109,23 @@ $options = array(
 parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
 
 if (isset($_GET['play_button_opacity'])) {
-	$options['play_button_opacity'] = (float) $_GET['play_button_opacity'];
+	$options['play_button_opacity'] = (float) ($_GET['play_button_opacity'] / 100);
 }
 
 if ($options['play_button_opacity'] > 1) {
 	$options['play_button_opacity'] = 1;
+}
+
+if (isset($_GET['play_button_width'])) {
+	$options['play_button_width'] = (int) $_GET['play_button_width'];
+}
+
+if ($options['play_button_width'] < 0) {
+	$options['play_button_width'] = 80;
+}
+
+if (isset($_GET['play_button_url'])) {
+	$options['play_button_url'] = (string) $_GET['play_button_url'];
 }
 
 if (isset($_GET['width'])) {
@@ -141,24 +156,21 @@ $options['height'] = intval($options['width'] * $thumbnail_bg_ratio);
 
 $thumbnail->resizeImage($options['width'], $options['height'], null, 1);
 
-
-
 /**
  * Prepare the play button overlay image.
  */
 $play_button = new Imagick();
 $play_button->readImage(
-	'./assets/youtube_play.png'
+	$options['play_button_url'],
 );
 
 $play_button_original_width = $play_button->getImageWidth();
 $play_button_original_height = $play_button->getImageHeight();
 
-$play_button_width = $options['width'] / 8; // Play button width defaults to 8% of the size of the thumbnail.
-$play_button_size_adjustment = $play_button_width / $play_button_original_width;
+$play_button_size_adjustment = $options['play_button_width'] / $play_button_original_width;
 $play_button_height = $play_button_original_height * $play_button_size_adjustment;
 
-$play_button->resizeImage($play_button_width, $play_button_height, null, 1);
+$play_button->resizeImage($options['play_button_width'], $play_button_height, null, 1);
 
 $play_button->evaluateImage(Imagick::EVALUATE_MULTIPLY, $options['play_button_opacity'], Imagick::CHANNEL_ALPHA); // Overlay the play button with some transparency (optional)
 
