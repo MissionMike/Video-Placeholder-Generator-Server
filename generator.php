@@ -111,6 +111,8 @@ parse_str($_SERVER['REDIRECT_QUERY_STRING'], $_GET);
 
 if (isset($_GET['play_button_opacity'])) {
 	$options['play_button_opacity'] = (float) ($_GET['play_button_opacity'] / 100);
+} elseif (isset($_GET['pbo'])) {
+	$options['play_button_opacity'] = (float) ($_GET['pbo'] / 100);
 }
 
 if ($options['play_button_opacity'] > 1) {
@@ -119,6 +121,8 @@ if ($options['play_button_opacity'] > 1) {
 
 if (isset($_GET['play_button_width'])) {
 	$options['play_button_width'] = (int) $_GET['play_button_width'];
+} elseif (isset($_GET['pbw'])) {
+	$options['play_button_width'] = (int) $_GET['pbw'];
 }
 
 if ($options['play_button_width'] < 0) {
@@ -127,12 +131,16 @@ if ($options['play_button_width'] < 0) {
 
 if (isset($_GET['play_button_url'])) {
 	$options['play_button_url'] = (string) $_GET['play_button_url'];
+} elseif (isset($_GET['pburl'])) {
+	$options['play_button_url'] = (string) $_GET['pburl'];
 } else {
 	$options['play_button_url'] = $options['play_button_url_default'];
 }
 
 if (isset($_GET['width'])) {
 	$options['width'] = (int) $_GET['width'];
+} elseif (isset($_GET['w'])) {
+	$options['width'] = (int) $_GET['w'];
 }
 
 if ($options['width'] > 1920) {
