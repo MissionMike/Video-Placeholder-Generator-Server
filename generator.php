@@ -59,8 +59,6 @@ $thumbnail = new Imagick(); // Prepare Imagick object
 
 if (is_numeric($video_id)) { // Vimeo IDs are all numbers...
 
-	$url = get_vimeo_thumbnail($video_id);
-
 	$data = file_get_contents("http://vimeo.com/api/v2/video/$video_id.json");
 	$data = json_decode($data);
 
