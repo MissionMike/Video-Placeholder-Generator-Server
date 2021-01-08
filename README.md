@@ -1,3 +1,5 @@
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 # Video-Placeholder-Generator-Server
 Server-side utility to generate a video placeholder image, especially useful for embedding in HTML email.
 
