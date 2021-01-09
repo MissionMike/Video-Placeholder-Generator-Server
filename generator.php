@@ -201,7 +201,7 @@ $thumbnail->compositeImage($play_button, Imagick::COMPOSITE_DEFAULT, $play_butto
 
 // Save it
 if ($options['save'] === true) {
-	$thumbnail->setImageFilename($img);
+	$thumbnail->setImageFilename('./thumbnails/' . $img);
 	$thumbnail->writeImage();
 }
 

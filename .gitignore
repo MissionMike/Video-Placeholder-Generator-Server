@@ -7,3 +7,6 @@ composer.lock
 # misc
 .DS_Store
 analytics.php
+
+# generated thumbnails
+/thumbnails/*.jpg
