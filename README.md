@@ -35,4 +35,4 @@ https://tools.missionmike.dev/video-placeholder-generator/thumbnails/H79gstz4qZI
 
 Try out the front-end utility here: https://www.missionmike.dev/video-placeholder-generator/
 
-Check out the front-end utilitiy repo here: https://github.com/MissionMike/Video-Placeholder-Generator-Client
+Check out the front-end utilitiy repo here: https://github.com/missionmike/video-placeholder-generator-client
